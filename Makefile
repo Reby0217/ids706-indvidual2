@@ -7,6 +7,13 @@ rust-version:
 	rustup --version           # rust toolchain manager
 	clippy-driver --version    # rust linter
 
+# Install Rust toolchain and components
+install:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	rustup component add rustfmt
+	rustup component add clippy
+	@echo "Rust toolchain and components installed."
+
 # Format Rust code
 format:
 	cargo fmt --quiet
