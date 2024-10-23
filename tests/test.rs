@@ -63,4 +63,57 @@ mod tests {
         // Assert that Bob's record is deleted
         assert_eq!(count, 0);
     }
+
+    #[test]
+    fn test_read_data() {
+        let conn = Connection::open_in_memory().unwrap();
+        run(&conn).unwrap();
+
+        let mut stmt = conn
+            .prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")
+            .unwrap();
+        let people_iter = stmt.query_map([], |row| {
+            Ok((
+                row.get::<_, i32>(0)?,    // id
+                row.get::<_, String>(1)?, // name
+                row.get::<_, String>(2)?, // country
+                row.get::<_, String>(3)?, // industry
+                row.get::<_, f64>(4)?,    // net_worth
+                row.get::<_, String>(5)?, // company
+            ))
+        }).unwrap();
+
+        let mut count = 0;
+        for person in people_iter {
+            let (id, name, country, industry, net_worth, company) = person.unwrap();
+            match id {
+                1 => {
+                    assert_eq!(name, "Alice");
+                    assert_eq!(country, "USA");
+                    assert_eq!(industry, "Tech");
+                    assert_eq!(net_worth, 100.0);
+                    assert_eq!(company, "CompanyA");
+                }
+                2 => {
+                    assert_eq!(name, "Bob");
+                    assert_eq!(country, "UK");
+                    assert_eq!(industry, "Finance");
+                    assert_eq!(net_worth, 200.0);
+                    assert_eq!(company, "CompanyB");
+                }
+                3 => {
+                    assert_eq!(name, "Charlie");
+                    assert_eq!(country, "Canada");
+                    assert_eq!(industry, "Tech");
+                    assert_eq!(net_worth, 180.0); // After update
+                    assert_eq!(company, "CompanyC");
+                }
+                _ => panic!("Unexpected record"),
+            }
+            count += 1;
+        }
+
+        // Assert that 3 records are read
+        assert_eq!(count, 3);
+    }
 }

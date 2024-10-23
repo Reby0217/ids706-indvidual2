@@ -17,7 +17,7 @@ lint:
 
 # Run Rust tests
 test:
-	cargo test --quiet
+	cargo test --test test
 
 # Build the Rust project
 build:
