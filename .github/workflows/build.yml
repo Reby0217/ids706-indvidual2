@@ -23,8 +23,12 @@ jobs:
       run: |
         cargo build --release
 
+    - name: Save the binary path to GITHUB_OUTPUT
+      run: |
+        echo "binary_path=target/release/ids706-indvidual2" >> $GITHUB_OUTPUT
+
     - name: Package Binary as Artifact
       uses: actions/upload-artifact@v4 
       with:
         name: optimized-binary
-        path: target/release/ids706-indvidual2
+        path: ${{ steps.build.outputs.binary_path }}
