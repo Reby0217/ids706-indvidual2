@@ -9,6 +9,7 @@
 ## Video Demo
 [Youtube Video Here]() 
 
+## Description
 This project focuses on building a Rust CLI Binary that interacts with an SQLite database, demonstrating CRUD operations (Create, Read, Update, Delete). The binary is optimized and automatically built using GitHub Actions, and artifacts can be downloaded after the CI/CD pipeline completes successfully.
 
 ---
