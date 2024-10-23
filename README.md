@@ -14,23 +14,6 @@ This project focuses on building a Rust CLI Binary that interacts with an SQLite
 
 ---
 
-## Deliverables
-- **Rust CLI Binary**: The main binary (`ids706-indvidual2`) performs CRUD operations on a database of the wealthiest individuals.
-- **SQLite Database**: Includes an SQLite database (`wealth_db.db`) for demonstration. Below is a snapshot of the table after the CRUD operations have been executed, showing the remaining records:
-![DB](screenshots/db.png)
-
-- **Screenshot of successful database operations**: 
-![Log](screenshots/log.png)
-
-- **Use of LLM and GitLab Copilot**: For this project, we chose not to utilize an LLM or GitLab Copilot during the development process. After consulting with the TA, we confirmed that the use of these tools is entirely optional, and not using them will not result in any loss of points. We decided to approach the project by learning and implementing Rust independently, relying on personal research and development.
-![Chat](screenshots/chat.png)
-
-- **Optimized Rust Binary**:  
-  The project includes an optimized Rust binary (`ids706-indvidual2`) built using the `cargo build --release` command. This binary is designed for efficient performance and demonstrates CRUD (Create, Read, Update, Delete) operations on an SQLite database. The binary is built and packaged automatically through GitHub Actions as an artifact that can be downloaded directly from the repository.
-![Artifact](screenshots/artifact.png)
-
----
-
 ## Project Structure
 ```bash
 .
@@ -124,7 +107,23 @@ cargo --version   # Cargo package manager version
      ```
 ---
 
-## Requirements
+
+## Deliverables
+- **Rust CLI Binary**: The main binary (`ids706-indvidual2`) performs CRUD operations on a database of the wealthiest individuals.
+- **SQLite Database**: Includes an SQLite database (`wealth_db.db`) for demonstration. Below is a snapshot of the table after the CRUD operations have been executed, showing the remaining records:
+![DB](screenshots/db.png)
+
+- **Screenshot of successful database operations**: 
+![Log](screenshots/log.png)
+
+- **Use of LLM and GitLab Copilot**: For this project, we chose not to utilize an LLM or GitLab Copilot during the development process. After consulting with the TA, we confirmed that the use of these tools is entirely optional, and not using them will not result in any loss of points. We decided to approach the project by learning and implementing Rust independently, relying on personal research and development.
+![Chat](screenshots/chat.png)
+
+- **Optimized Rust Binary**:  
+  The project includes an optimized Rust binary (`ids706-indvidual2`) built using the `cargo build --release` command. This binary is designed for efficient performance and demonstrates CRUD (Create, Read, Update, Delete) operations on an SQLite database. The binary is built and packaged automatically through GitHub Actions as an artifact that can be downloaded directly from the repository.
+![Artifact](screenshots/artifact.png)
+
+---
 
 ### SQLite Database
 
