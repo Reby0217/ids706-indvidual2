@@ -1,12 +1,10 @@
-# IDS706 Python Script interacting with SQL Database
+# IDS706 Rust CLI Binary Interacting with SQLite Database
 
 ## Continuous Integration with GitHub Actions
 [![Format](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/format.yml/badge.svg)](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/format.yml)
 [![Lint](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/lint.yml/badge.svg)](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/lint.yml)
 [![Build](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/build.yml/badge.svg)](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/build.yml)
 [![Tests](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/test.yml/badge.svg)](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/test.yml)
-
-
 
 This project focuses on building a Rust CLI Binary that interacts with an SQLite database, demonstrating CRUD operations (Create, Read, Update, Delete). The binary is optimized and automatically built using GitHub Actions, and artifacts can be downloaded after the CI/CD pipeline completes successfully.
 
@@ -20,13 +18,11 @@ This project focuses on building a Rust CLI Binary that interacts with an SQLite
 - **Screenshot of successful database operations**: 
 ![Log](screenshots/log.png)
 
-- **Use of LLM and Use of Gitlab Copilot**: For this project, we chose not to utilize an LLM (such as ChatGPT) or GitLab Copilot during the development process. After consulting with the TA, we confirmed that the use of these tools is entirely optional, and not using them will not result in any loss of points. We decided to approach the project by learning and implementing Rust independently, relying on personal research and development.
-
+- **Use of LLM and GitLab Copilot**: For this project, we chose not to utilize an LLM or GitLab Copilot during the development process. After consulting with the TA, we confirmed that the use of these tools is entirely optional, and not using them will not result in any loss of points. We decided to approach the project by learning and implementing Rust independently, relying on personal research and development.
 ![Chat](screenshots/chat.png)
 
-- **Optimized Rust Binary**:
-The project includes an optimized Rust binary (`ids706-indvidual2`) built using the `cargo build --release` command. This binary is designed for efficient performance and demonstrates CRUD (Create, Read, Update, Delete) operations on an SQLite database. The binary is built and packaged automatically through GitHub Actions as an artifact that can be downloaded directly from the repository. 
-
+- **Optimized Rust Binary**:  
+  The project includes an optimized Rust binary (`ids706-indvidual2`) built using the `cargo build --release` command. This binary is designed for efficient performance and demonstrates CRUD (Create, Read, Update, Delete) operations on an SQLite database. The binary is built and packaged automatically through GitHub Actions as an artifact that can be downloaded directly from the repository.
 ![Artifact](screenshots/artifact.png)
 
 ---
@@ -45,71 +41,84 @@ The project includes an optimized Rust binary (`ids706-indvidual2`) built using 
 └── .github/workflows                  # CI/CD workflows for GitHub Actions
 ```
 
-## Getting Started
+---
 
-### Prerequisites
+## Dependencies
 
-- **Rust and Cargo**: Both can be installed with the following command
+To run this project, you need to have the following dependencies installed:
 
-  ```bash
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ```
+1. **Rust and Cargo**: 
+   - Install Rust and Cargo with the following command:
+     ```bash
+     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+     ```
 
-- **Verify Installation**: After installation, you can check that Rust and Cargo have been successfully installed with the following commands
+2. **SQLite**: The project uses the SQLite database. Ensure that SQLite is installed on your system if you plan to interact directly with the database files.
 
-  ```bash
-  rustc --version   # Rust compiler version
-  cargo --version   # Cargo package manager version
-  ```
+3. **Make**: The project uses a `Makefile` to manage common tasks like formatting, linting, testing, and building the project.
 
-### Installation
+4. **Rusqlite Crate**: Rust crate for interacting with SQLite databases. This is handled automatically by Cargo through `Cargo.toml`.
+
+Verify that Rust and Cargo are installed:
+```bash
+rustc --version   # Rust compiler version
+cargo --version   # Cargo package manager version
+```
+
+---
+
+## How to Run
 
 1. **Clone the repository**:
 
-   First, clone the repository to your local machine and navigate into the project directory:
+   Clone the project repository and navigate into the project directory:
 
    ```bash
    git clone https://github.com/Reby0217/ids706-indvidual2.git
    cd ids706-indvidual2
    ```
 
-2. **Install Rust and required toolchain components**:
+2. **Install dependencies and set up the toolchain**:
 
-   The `make install` command will install Rust and its required components (`rustfmt` and `clippy`) if they are not already installed:
-
+   The `make install` command installs the required Rust toolchain components (`rustfmt` and `clippy`):
+   
    ```bash
    make install
    ```
 
-3. **Format, lint, and build the binary**:
+3. **Build, format, lint, and test the binary**:
 
-   Format and lint your code using `rustfmt` and `clippy`, then build the binary:
+   To ensure your code is clean, follows best practices, and compiles correctly, use the `make all` command. This will automatically format, lint, build, and run tests on the project in one step:
 
-   - For development (debug mode):
-     ```bash
-     make format   # Format the Rust code
-     make lint     # Lint the code for issues
-     make build    # Build the binary in debug mode
-     ```
+   ```bash
+   make all  # Runs format, lint, build, and tests
+   ```
 
-   - For release (optimized binary):
-     ```bash
-     make release  # Build the optimized binary for release
-     ```
+4. **Run unit tests**:
 
-4. **Run the binary**:
+   You can use the `make test` command to run the unit tests, ensuring the correctness of the CRUD operations:
+
+   ```bash
+   make test  # Run all unit tests
+   ```
+
+   Successful test execution:
+   ![Test](screenshots/test.png)
+
+5. **Run the binary**:
 
    After building the project, you can run the binary:
 
    - For development (debug mode):
      ```bash
-     make run      # Build and run the binary in debug mode
+     make run  # Build and run the binary in debug mode
      ```
 
-   - For release:
+   - For release (optimized binary):
      ```bash
      target/release/ids706-indvidual2
      ```
+---
 
 ## Requirements
 
@@ -117,15 +126,11 @@ The project includes an optimized Rust binary (`ids706-indvidual2`) built using 
 
 This project connects to a SQLite database (`wealth_db.db`) and performs various operations on it, including creating tables, inserting, updating, reading, and deleting records. The connection is established using the `rusqlite` crate.
 
+---
 
 ### CRUD Operations
 
-- **Create**: Inserts records for the wealthiest individuals into the database.
-- **Read**: Retrieves records from the database, sorted by `net_worth` or filtered by `industry`.
-- **Update**: Updates the net worth of specific individuals.
-- **Delete**: Deletes specific records from the database.
-
-1. **Create**:
+1. **Create**: Inserts records for the wealthiest individuals into the database.
    ```rust
    conn.execute(
        "INSERT INTO wealthiest_people (id, name, country, industry, net_worth, company) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
@@ -133,21 +138,23 @@ This project connects to a SQLite database (`wealth_db.db`) and performs various
    )?;
    ```
 
-2. **Read**:
+2. **Read**: Retrieves records from the database, sorted by `net_worth` or filtered by `industry`.
    - **All Records**:
      ```sql
-     SELECT * FROM wealthiest_people
-     ```
-   - **Sort by Net Worth**:
-     ```sql
-     SELECT * FROM wealthiest_people ORDER BY net_worth DESC
-     ```
-   - **Filter by Industry**:
-     ```sql
-     SELECT * FROM wealthiest_people WHERE industry = ?
+     SELECT * FROM wealthiest_people;
      ```
 
-3. **Update**:
+   - **Sort by Net Worth**:
+     ```sql
+     SELECT * FROM wealthiest_people ORDER BY net_worth DESC;
+     ```
+
+   - **Filter by Industry**:
+     ```sql
+     SELECT * FROM wealthiest_people WHERE industry = 'Tech';
+     ```
+
+3. **Update**: Updates the net worth of specific individuals.
    ```rust
    conn.execute(
        "UPDATE wealthiest_people SET net_worth = 180 WHERE name = 'Charlie'",
@@ -155,11 +162,10 @@ This project connects to a SQLite database (`wealth_db.db`) and performs various
    )?;
    ```
 
-4. **Delete**:
+4. **Delete**: Deletes bob's records from the database.
    ```rust
    conn.execute("DELETE FROM wealthiest_people WHERE name = 'Bob'", params![])?;
    ```
-
 
 ---
 
@@ -171,7 +177,6 @@ The project uses a `Makefile` to streamline development tasks, including version
   ```bash
   make rust-version
   ```
-  This will print the versions of `rustc`, `cargo`, `rustfmt`, `rustup`, and `clippy-driver`.
 
 - **Format**: Format all Rust files using `rustfmt` to ensure consistent code style.
   ```bash
