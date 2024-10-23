@@ -70,18 +70,22 @@ mod tests {
         run(&conn).unwrap();
 
         let mut stmt = conn
-            .prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")
+            .prepare(
+                "SELECT id, name, country, industry, net_worth, company FROM wealthiest_people",
+            )
             .unwrap();
-        let people_iter = stmt.query_map([], |row| {
-            Ok((
-                row.get::<_, i32>(0)?,    // id
-                row.get::<_, String>(1)?, // name
-                row.get::<_, String>(2)?, // country
-                row.get::<_, String>(3)?, // industry
-                row.get::<_, f64>(4)?,    // net_worth
-                row.get::<_, String>(5)?, // company
-            ))
-        }).unwrap();
+        let people_iter = stmt
+            .query_map([], |row| {
+                Ok((
+                    row.get::<_, i32>(0)?,    // id
+                    row.get::<_, String>(1)?, // name
+                    row.get::<_, String>(2)?, // country
+                    row.get::<_, String>(3)?, // industry
+                    row.get::<_, f64>(4)?,    // net_worth
+                    row.get::<_, String>(5)?, // company
+                ))
+            })
+            .unwrap();
 
         let mut count = 0;
         for person in people_iter {

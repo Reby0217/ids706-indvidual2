@@ -52,7 +52,10 @@ pub fn run(conn: &Connection) -> Result<()> {
     let mut count = 0;
     for person in people_iter {
         let (id, name, country, industry, net_worth, company) = person?;
-        println!("{}, {}, {}, {}, {}, {}", id, name, country, industry, net_worth, company);
+        println!(
+            "{}, {}, {}, {}, {}, {}",
+            id, name, country, industry, net_worth, company
+        );
         count += 1;
     }
     println!("Retrieved {} records sorted by net worth.\n", count);
@@ -66,7 +69,8 @@ pub fn run(conn: &Connection) -> Result<()> {
     println!("Updated Charlie's net worth to {}.\n", new_net_worth);
 
     // Confirm the update by retrieving all records
-    let mut stmt = conn.prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")?;
+    let mut stmt = conn
+        .prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")?;
     let people_iter = stmt.query_map(params![], |row| {
         Ok((
             row.get::<_, i32>(0)?,    // id
@@ -82,11 +86,16 @@ pub fn run(conn: &Connection) -> Result<()> {
     let mut count = 0;
     for person in people_iter {
         let (id, name, country, industry, net_worth, company) = person?;
-        println!("{}, {}, {}, {}, {}, {}", id, name, country, industry, net_worth, company);
+        println!(
+            "{}, {}, {}, {}, {}, {}",
+            id, name, country, industry, net_worth, company
+        );
         count += 1;
     }
-    println!("Retrieved {} records after updating Charlie's net worth.\n", count);
-
+    println!(
+        "Retrieved {} records after updating Charlie's net worth.\n",
+        count
+    );
 
     Ok(())
 }
@@ -101,7 +110,8 @@ pub fn delete_bob(conn: &Connection) -> Result<()> {
     println!("Deleted Bob's record.\n");
 
     // Check records after deletion
-    let mut stmt = conn.prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")?;
+    let mut stmt = conn
+        .prepare("SELECT id, name, country, industry, net_worth, company FROM wealthiest_people")?;
     let people_iter = stmt.query_map(params![], |row| {
         Ok((
             row.get::<_, i32>(0)?,
@@ -117,10 +127,13 @@ pub fn delete_bob(conn: &Connection) -> Result<()> {
     let mut count = 0;
     for person in people_iter {
         let (id, name, country, industry, net_worth, company) = person?;
-        println!("{}, {}, {}, {}, {}, {}", id, name, country, industry, net_worth, company);
+        println!(
+            "{}, {}, {}, {}, {}, {}",
+            id, name, country, industry, net_worth, company
+        );
         count += 1;
     }
     println!("Retrieved {} records.\n", count);
 
-    Ok(()) 
+    Ok(())
 }

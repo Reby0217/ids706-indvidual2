@@ -1,4 +1,4 @@
-use ids706_indvidual2::{delete_bob, run}; 
+use ids706_indvidual2::{delete_bob, run};
 use rusqlite::Connection;
 
 fn main() {
