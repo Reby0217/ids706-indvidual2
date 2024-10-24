@@ -7,7 +7,7 @@
 [![Tests](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/test.yml/badge.svg)](https://github.com/Reby0217/ids706-indvidual2/actions/workflows/test.yml)
 
 ## Video Demo
-[Youtube Video Here]() 
+[Youtube Video Here](https://youtu.be/Q4x5VDLmvY4) 
 
 ## Description
 This project focuses on building a Rust CLI Binary that interacts with an SQLite database, demonstrating CRUD operations (Create, Read, Update, Delete). The binary is optimized and automatically built using GitHub Actions, and artifacts can be downloaded after the CI/CD pipeline completes successfully.
